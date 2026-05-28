@@ -43,7 +43,7 @@ st.markdown("""
 
 # ---------------- AGENTS ----------------
 
-# ---------------- AGENTS ----------------
+
 st.markdown("## 🤖 Available Agents")
 
 agents = [
@@ -57,29 +57,15 @@ agents = [
     "📩 Notification Agent"
 ]
 
-# Select Active Agents
-selected_agents = st.multiselect(
-    "Select AI Agents",
-    agents,
-    default=agents
-)
-
 cols = st.columns(4)
 
 for i, agent in enumerate(agents):
-
-    status = "🟢 Active" if agent in selected_agents else "🔴 Inactive"
-
     with cols[i % 4]:
         st.markdown(
-            f"""
-            <div class='agent-card'>
-                <b>{agent}</b><br><br>
-                {status}
-            </div>
-            """,
+            f"<div class='agent-card'>{agent}</div>",
             unsafe_allow_html=True
         )
+
 # ---------------- WORKFLOW ----------------
 st.markdown("## 🔄 Design Workflow")
 
