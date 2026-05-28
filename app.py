@@ -189,8 +189,18 @@ if st.button("Run Workflow Simulation"):
         progress.progress((i + 1) / len(workflow))
 
     st.success("🎉 Workflow Completed Successfully!")
+    
+    #---------------------- COST + STATUS LOGIC ----------------------
+    
+    
+    overall_cost = 8800
 
-    # OUTPUT
+    if overall_cost <= budget:
+        status = "Approved & Booked ✅"
+    else:
+        status = "Over Budget ❌"
+
+    # ---------------- OUTPUT ----------------
     st.markdown("## 📦 Final Output")
 
     st.markdown(f"""
@@ -207,24 +217,24 @@ if st.button("Run Workflow Simulation"):
     <b>Hotel:</b> 3-Star Hotel (₹3500)<br>
     <b>Cab:</b> Airport Pickup (₹800)<br><br>
 
-    <b>Total Cost:</b> ₹8800<br>
+    <b>Total Cost:</b> ₹{overall_cost}<br>
     <b>Budget:</b> ₹{budget}<br><br>
 
-    <b>Status:</b> Approved & Booked ✅<br>
+    <b>Status:</b> {status}<br>
     <b>Payment:</b> Successful 💳<br>
     <b>Notification:</b> Ticket Sent 📩
 
     </div>
     """, unsafe_allow_html=True)
 
-# ---------------- REFLECTION ----------------
-st.markdown("## 🧠 Reflection")
+# ---------------- AI Analysis----------------
+st.markdown("## 🧠 AI Analysis")
 
 reflection = st.text_area(
     "Why is this orchestration suitable?",
-    "This workflow uses Hybrid orchestration. "
-    "Search-related tasks can run in parallel while approval, "
-    "payment and notification follow sequential execution."
+    f"This workflow uses {pattern} orchestration. "
+    "Search-related tasks run efficiently while approval, "
+    "payment and notification are handled systematically."
 )
 
 if reflection:
