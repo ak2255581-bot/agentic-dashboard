@@ -65,15 +65,46 @@ for i, agent in enumerate(agents):
             f"<div class='agent-card'>{agent}</div>",
             unsafe_allow_html=True
         )
+        
+        
+        # ---------------- INPUT ----------------
+st.markdown("## 🧾 Travel Input")
+
+col1, col2, col3 = st.columns(3)
+
+with col1:
+    from_city = st.text_input("From City", "Kolkata")
+
+with col2:
+    to_city = st.text_input("To City", "Mumbai")
+
+with col3:
+    budget = st.number_input(
+        "Budget ₹",
+        min_value=1000,
+        value=12000
+    )
+    
+        
+    
 
 # ---------------- WORKFLOW ----------------
 st.markdown("## 🔄 Design Workflow")
 
-selected_agents = st.multiselect(
-    "Select AI Agents",
-    agents,
-    default=agents
-)
+with st.expander("📋 Click to View / Design Workflow", expanded=False):
+
+    selected_agents = st.multiselect(
+        "Select AI Agents",
+        agents,
+        default=agents
+    )
+
+    
+    # Step 1
+    # Step 2
+    # Step 3
+    # Selected Agents Summary
+    # etc.
 
 workflow = []
 
@@ -144,24 +175,7 @@ pattern = st.radio(
 
 st.success(f"Selected Pattern: {pattern}")
 
-# ---------------- INPUT ----------------
-st.markdown("## 🧾 Travel Input")
 
-col1, col2, col3 = st.columns(3)
-
-with col1:
-    from_city = st.text_input("From City", "Kolkata")
-
-with col2:
-    to_city = st.text_input("To City", "Mumbai")
-
-with col3:
-    budget = st.number_input(
-        "Budget ₹",
-        min_value=1000,
-        value=12000
-    )
-    
     # ---------------- COST CALCULATION ----------------
 
 flight = 4500
