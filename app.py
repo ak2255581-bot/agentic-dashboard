@@ -85,6 +85,57 @@ with col3:
         value=12000
     )
     
+     # ---------------- COST CALCULATION ----------------
+
+flight = 4500
+hotel = 3500
+cab = 800
+
+total = np.sum([flight, hotel, cab])
+
+st.write("### 💰 Total Cost Calculation")
+st.success(f"Total Travel Cost: ₹{total}")
+
+
+ #---------------------- COST + STATUS LOGIC ----------------------
+    
+    
+    
+    overall_cost = 8800
+
+    if overall_cost <= budget:
+        status = "Approved & Booked ✅"
+    else:
+        status = "Over Budget ❌"
+
+    # ---------------- OUTPUT ----------------
+    st.markdown("## 📦 Final Output")
+
+    st.markdown(f"""
+    <div class='output-box'>
+
+    <h2>🎯 Best Travel Itinerary</h2>
+    <hr>
+
+    <b>Route:</b> {from_city} → {to_city}<br><br>
+
+    <b>Travel Mode:</b> Flight ✈️<br><br>
+
+    <b>Flight Cost:</b> ₹4500<br>
+    <b>Hotel:</b> 3-Star Hotel (₹3500)<br>
+    <b>Cab:</b> Airport Pickup (₹800)<br><br>
+
+    <b>Total Cost:</b> ₹{overall_cost}<br>
+    <b>Budget:</b> ₹{budget}<br><br>
+
+    <b>Status:</b> {status}<br>
+    <b>Payment:</b> Successful 💳<br>
+    <b>Notification:</b> Ticket Sent 📩
+
+    </div>
+    """, unsafe_allow_html=True)
+
+    
         
     
 
@@ -176,17 +227,7 @@ pattern = st.radio(
 st.success(f"Selected Pattern: {pattern}")
 
 
-    # ---------------- COST CALCULATION ----------------
-
-flight = 4500
-hotel = 3500
-cab = 800
-
-total = np.sum([flight, hotel, cab])
-
-st.write("### 💰 Total Cost Calculation")
-st.success(f"Total Travel Cost: ₹{total}")
-
+   
 # ---------------- RUN ----------------
 st.markdown("## 🚀 Run AI Workflow")
 
@@ -206,42 +247,8 @@ if st.button("Run Workflow Simulation"):
 
     st.success("🎉 Workflow Completed Successfully!")
     
-    #---------------------- COST + STATUS LOGIC ----------------------
+   
     
-    
-    overall_cost = 8800
-
-    if overall_cost <= budget:
-        status = "Approved & Booked ✅"
-    else:
-        status = "Over Budget ❌"
-
-    # ---------------- OUTPUT ----------------
-    st.markdown("## 📦 Final Output")
-
-    st.markdown(f"""
-    <div class='output-box'>
-
-    <h2>🎯 Best Travel Itinerary</h2>
-    <hr>
-
-    <b>Route:</b> {from_city} → {to_city}<br><br>
-
-    <b>Travel Mode:</b> Flight ✈️<br><br>
-
-    <b>Flight Cost:</b> ₹4500<br>
-    <b>Hotel:</b> 3-Star Hotel (₹3500)<br>
-    <b>Cab:</b> Airport Pickup (₹800)<br><br>
-
-    <b>Total Cost:</b> ₹{overall_cost}<br>
-    <b>Budget:</b> ₹{budget}<br><br>
-
-    <b>Status:</b> {status}<br>
-    <b>Payment:</b> Successful 💳<br>
-    <b>Notification:</b> Ticket Sent 📩
-
-    </div>
-    """, unsafe_allow_html=True)
 
 # ---------------- AI Analysis----------------
 st.markdown("## 🧠 AI Analysis")
