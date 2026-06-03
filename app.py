@@ -131,37 +131,38 @@ else:
     """, unsafe_allow_html=True)
 
 # ---------------- WORKFLOW ----------------
+workflow = []
 
 st.markdown("### 🔄 Workflow Flow")
 
 if len(workflow) > 0:
-    
     total_cols = (2 * len(workflow)) - 1
     cols = st.columns(total_cols)
     
     col_idx = 0
     for i, step in enumerate(workflow, 1):
-        
         with cols[col_idx]:
             st.markdown(
-                f"<div class='step-box' style='text-align: center; padding: 10px; margin: 5px 0; min-height: 80px;'>"
-                f"<b>Step {i}</b><br><span style='font-size: 12px;'>{step}</span>"
-                f"</div>",
+                f"""
+                <div class='step-box' style='text-align: center; padding: 10px; margin: 5px 0; min-height: 80px;'>
+                    <b>Step {i}</b><br><span style='font-size: 12px;'>{step}</span>
+                </div>
+                """,
                 unsafe_allow_html=True
             )
         col_idx += 1
         
-        
         if i < len(workflow):
             with cols[col_idx]:
                 st.markdown(
-                    "<div class='arrow' style='text-align: center; line-height: 80px; font-size: 20px;'>➡️</div>",
+                    """
+                    <div class='arrow' style='text-align: center; line-height: 80px; font-size: 20px;'>➡️</div>
+                    """,
                     unsafe_allow_html=True
                 )
             col_idx += 1
 else:
     st.warning("Please select at least one agent to see the workflow.")
-
 # ---------------- SUMMARY ----------------
 with col2:
 
