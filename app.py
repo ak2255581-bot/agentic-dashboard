@@ -101,17 +101,26 @@ st.success(f"Total Travel Cost: ₹{total}")
 
 
 # ------------------------- REAL-USE AGENTIC COST LOGIC -------------------------
-# Agar from_city aur to_city nahi mile toh default value set ho jayegi
+
 b_from = from_city if 'from_city' in locals() else "Kolkata"
 b_to = to_city if 'to_city' in locals() else "Mumbai"
 base_multiplier = len(b_from) + len(b_to)
 
-# Yeh smart logic check karega ki aapne upar 'selected_agents' likha hai ya sirf 'agents'
+# ------------------------- SAFE VARIABLE CHECK -------------------------
 active_agents = []
+
+
 if 'selected_agents' in locals() or 'selected_agents' in globals():
-    active_agents = selected_agents
-elif 'agents' in locals() or 'agents' in globals():
-    active_agents = agents
+    try:
+        active_agents = 'selected_agents'
+    except NameError:
+        pass
+
+if not active_agents and ('agents' in locals() or 'agents' in globals()):
+    try:
+        active_agents = agents
+    except NameError:
+        active_agents = []
 
 # Dynamic cost calculation based on active selection
 flight_fare = base_multiplier * 350 if "✈️ Flight Search Agent" in active_agents else 0
@@ -129,31 +138,41 @@ elif overall_cost <= current_budget:
     status = "Approved & Within Budget ✅"
 else:
     status = "Rejected: Over Budget ❌"
-    # ---------------- OUTPUT ----------------
-    st.markdown("## 📦 Final Output")
-    st.markdown(f"""
-    <div class='output-box'>
-    <h2>🎯 Best Travel Itinerary</h2>
-    <hr>
+    
+    # ------------------------- LIVE SYSTEM OUTPUT DISPLAY -------------------------
+st.markdown("## 📦 Live System Output")
 
-    <b>Route:</b> {from_city} → {to_city}<br><br>
+st.markdown(f"""
+<div style='background-color: #0F172A; padding: 20px; border-radius: 12px; border: 1px solid #1E293B; color: #E2E8F0;'>
+    <h3 style='color: #38BDF8; margin-top: 0;'>🎯 Optimized Itinerary Sheet</h3>
+    <hr style='border: 0.5px solid #334155;'>
+    <p><b>Current Status:</b> <span style='font-size: 16px; font-weight: bold;'>{status}</span></p>
+    <p><b>Route Path:</b> {b_from} ➔ {b_to}</p>
+    <ul style='padding-left: 20px;'>
+        <li><b>Flight Allocation Cost:</b> ₹{flight_fare}</li>
+        <li><b>Train Allocation Cost:</b> ₹{train_fare}</li>
+        <li><b>Hotel Stay Booking:</b> ₹{hotel_fare}</li>
+        <li><b>Local Cab Allowance:</b> ₹{cab_fare}</li>
+    </ul>
+    <hr style='border: 0.5px solid #334155;'>
+    <h4 style='color: #F59E0B;'>Total Calculated Cost: ₹{overall_cost} / Set Budget: ₹{current_budget}</h4>
+</div>
+""", unsafe_allow_html=True)
 
-    <b>Travel Mode:</b> Flight ✈️<br><br>
+# ------------------------- ML INTERNSHIP ANALYTICS FEATURE -------------------------
+st.markdown("<br>", unsafe_allow_html=True)
+st.markdown("### 📊 Agentic Decision Insights (ML Metric)")
 
-    <b>Flight Cost:</b> ₹4500<br>
-    <b>Hotel:</b> 3-Star Hotel (₹3500)<br>
-    <b>Cab:</b> Airport Pickup (₹800)<br><br>
-
-    <b>Total Cost:</b> ₹{overall_cost}<br>
-    <b>Budget:</b> ₹{budget}<br><br>
-
-    <b>Status:</b> {status}<br>
-    <b>Payment:</b> Successful 💳<br>
-    <b>Notification:</b> Ticket Sent 📩
-
-    </div>
-    """, unsafe_allow_html=True)
-
+if current_budget > 0 and overall_cost > 0:
+    efficiency_score = min(100, int((current_budget / overall_cost) * 100)) if overall_cost > current_budget else int((overall_cost / current_budget) * 100)
+    
+    col_m1, col_m2 = st.columns(2)
+    with col_m1:
+        st.metric(label="Cost-to-Budget Ratio", value=f"{efficiency_score}%", delta="Optimal" if overall_cost <= current_budget else "Critical Overrun")
+    with col_m2:
+        st.progress(efficiency_score / 100)
+        st.caption("AI Workflow Optimization Score based on current thresholds.")
+        
 # ---------------- WORKFLOW ----------------
 st.markdown("## 🔄 Design Workflow")
 
