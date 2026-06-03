@@ -97,23 +97,18 @@ st.write("### 💰 Total Cost Calculation")
 st.success(f"Total Travel Cost: ₹{total}")
 
 
- #---------------------- COST + STATUS LOGIC ----------------------
-    
-    
-    
-    overall_cost = 8800
+ # ---------------- COST + STATUS LOGIC ----------------
 
-    if overall_cost <= budget:
-        status = "Approved & Booked ✅"
-    else:
-        status = "Over Budget ❌"
+overall_cost = 8800
 
+if overall_cost <= budget:
+    status = "Approved & Booked ✅"
+else:
+    status = "Over Budget ❌"
     # ---------------- OUTPUT ----------------
     st.markdown("## 📦 Final Output")
-
     st.markdown(f"""
     <div class='output-box'>
-
     <h2>🎯 Best Travel Itinerary</h2>
     <hr>
 
@@ -134,10 +129,6 @@ st.success(f"Total Travel Cost: ₹{total}")
 
     </div>
     """, unsafe_allow_html=True)
-
-    
-        
-    
 
 # ---------------- WORKFLOW ----------------
 st.markdown("## 🔄 Design Workflow")
