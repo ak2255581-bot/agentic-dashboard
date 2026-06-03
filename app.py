@@ -131,8 +131,6 @@ else:
     """, unsafe_allow_html=True)
 
 # ---------------- WORKFLOW ----------------
-
-      # ---------------- WORKFLOW ----------------
 st.markdown("## 🔄 Design Workflow")
 
 with st.expander("📋 Click to View / Design Workflow", expanded=False):
@@ -154,22 +152,20 @@ with st.expander("📋 Click to View / Design Workflow", expanded=False):
 workflow = []
 
 if "🔍 Search Agent" in selected_agents:
-    workflow.append("Search travel route & policies")
-
+    workflow.append("Search route")
 if "✈️ Flight Search Agent" in selected_agents:
-    workflow.append("Find lowest-cost flights")
-
+    workflow.append("Find Flights")
 if "🚆 Train Search Agent" in selected_agents:
-    workflow.append("Find lowest-cost trains")
+    workflow.append("Find Trains")
 
 if "🏨 Hotel Search Agent" in selected_agents:
-    workflow.append("Book 3-star hotel")
+    workflow.append("Book 3-star Hotel")
 
 if "🚖 Cab Booking Agent" in selected_agents:
-    workflow.append("Arrange cab booking")
+    workflow.append("Book cab")
 
 if "✅ Approval Agent" in selected_agents:
-    workflow.append("Ask for user approval")
+    workflow.append("Get Approval")
 
 if "💳 Payment Agent" in selected_agents:
     workflow.append("Process payment")
