@@ -99,12 +99,36 @@ st.success(f"Total Travel Cost: ₹{total}")
 
  # ---------------- COST + STATUS LOGIC ----------------
 
-overall_cost = 8800
 
-if overall_cost <= budget:
-    status = "Approved & Booked ✅"
+# ------------------------- REAL-USE AGENTIC COST LOGIC -------------------------
+# Agar from_city aur to_city nahi mile toh default value set ho jayegi
+b_from = from_city if 'from_city' in locals() else "Kolkata"
+b_to = to_city if 'to_city' in locals() else "Mumbai"
+base_multiplier = len(b_from) + len(b_to)
+
+# Yeh smart logic check karega ki aapne upar 'selected_agents' likha hai ya sirf 'agents'
+active_agents = []
+if 'selected_agents' in locals() or 'selected_agents' in globals():
+    active_agents = selected_agents
+elif 'agents' in locals() or 'agents' in globals():
+    active_agents = agents
+
+# Dynamic cost calculation based on active selection
+flight_fare = base_multiplier * 350 if "✈️ Flight Search Agent" in active_agents else 0
+train_fare = base_multiplier * 120 if "🚆 Train Search Agent" in active_agents else 0
+hotel_fare = 3500 if "🏨 Hotel Search Agent" in active_agents else 0
+cab_fare = 800 if "🚖 Cab Booking Agent" in active_agents else 0
+
+overall_cost = flight_fare + train_fare + hotel_fare + cab_fare
+
+# Budget threshold evaluation
+current_budget = budget if 'budget' in locals() else 12000
+if overall_cost == 0:
+    status = "No Agents Active ⚠️"
+elif overall_cost <= current_budget:
+    status = "Approved & Within Budget ✅"
 else:
-    status = "Over Budget ❌"
+    status = "Rejected: Over Budget ❌"
     # ---------------- OUTPUT ----------------
     st.markdown("## 📦 Final Output")
     st.markdown(f"""
@@ -144,7 +168,6 @@ with st.expander("📋 Click to View / Design Workflow", expanded=False):
     
     # Step 1
     # Step 2
-    # Step 3
     # Selected Agents Summary
     # etc. 
         
@@ -153,8 +176,10 @@ workflow = []
 
 if "🔍 Search Agent" in selected_agents:
     workflow.append("Search route")
+    
 if "✈️ Flight Search Agent" in selected_agents:
     workflow.append("Find Flights")
+    
 if "🚆 Train Search Agent" in selected_agents:
     workflow.append("Find Trains")
 
