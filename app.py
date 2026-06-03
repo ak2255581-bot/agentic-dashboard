@@ -68,7 +68,7 @@ for i, agent in enumerate(agents):
         
         
         # ---------------- INPUT ----------------
-st.markdown("## 🧾 Travel Input")
+st.markdown("## ✈️ Travel Input")
 
 col1, col2, col3 = st.columns(3)
 
@@ -131,68 +131,36 @@ else:
     """, unsafe_allow_html=True)
 
 # ---------------- WORKFLOW ----------------
-st.markdown("## 🔄 Design Workflow")
 
-with st.expander("📋 Click to View / Design Workflow", expanded=False):
+st.markdown("### 🔄 Workflow Flow")
 
-    selected_agents = st.multiselect(
-        "Select AI Agents",
-        agents,
-        default=agents
-    )
-
+if len(workflow) > 0:
     
-    # Step 1
-    # Step 2
-    # Step 3
-    # Selected Agents Summary
-    # etc.
-
-workflow = []
-
-if "🔍 Search Agent" in selected_agents:
-    workflow.append("Search travel route & policies")
-
-if "✈️ Flight Search Agent" in selected_agents:
-    workflow.append("Find lowest-cost flights")
-
-if "🚆 Train Search Agent" in selected_agents:
-    workflow.append("Find lowest-cost trains")
-
-if "🏨 Hotel Search Agent" in selected_agents:
-    workflow.append("Book 3-star hotel")
-
-if "🚖 Cab Booking Agent" in selected_agents:
-    workflow.append("Arrange cab booking")
-
-if "✅ Approval Agent" in selected_agents:
-    workflow.append("Ask for user approval")
-
-if "💳 Payment Agent" in selected_agents:
-    workflow.append("Process payment")
-
-if "📩 Notification Agent" in selected_agents:
-    workflow.append("Send ticket + confirmation")
-
-col1, col2 = st.columns([1, 1])
-
-# ---------------- FLOW ----------------
-with col1:
-
-    st.markdown("### Workflow Flow")
-
+    total_cols = (2 * len(workflow)) - 1
+    cols = st.columns(total_cols)
+    
+    col_idx = 0
     for i, step in enumerate(workflow, 1):
-
-        st.markdown(
-            f"<div class='step-box'>Step {i}: {step}</div>",
-            unsafe_allow_html=True
-        )
-
-        if i != len(workflow):
+        
+        with cols[col_idx]:
             st.markdown(
-                "<div class='arrow'>⬇️</div>",
+                f"<div class='step-box' style='text-align: center; padding: 10px; margin: 5px 0; min-height: 80px;'>"
+                f"<b>Step {i}</b><br><span style='font-size: 12px;'>{step}</span>"
+                f"</div>",
                 unsafe_allow_html=True
             )
+        col_idx += 1
+        
+        
+        if i < len(workflow):
+            with cols[col_idx]:
+                st.markdown(
+                    "<div class='arrow' style='text-align: center; line-height: 80px; font-size: 20px;'>➡️</div>",
+                    unsafe_allow_html=True
+                )
+            col_idx += 1
+else:
+    st.warning("Please select at least one agent to see the workflow.")
 
 # ---------------- SUMMARY ----------------
 with col2:
