@@ -169,8 +169,8 @@ with col2:
     st.markdown("### 📊 Selected Agents Summary")
 
     df = pd.DataFrame({
-        "Step": list(range(1, len(selected_agents)+1)),
-        "Agent": selected_agents
+        "Step": list(range(1, len(workflow)+1)),
+        "Agent": workflow
     })
 
     st.dataframe(df, use_container_width=True)
