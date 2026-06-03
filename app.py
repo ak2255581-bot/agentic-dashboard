@@ -87,31 +87,17 @@ with col3:
     
      # ---------------- COST CALCULATION ----------------
 
-flight = 4500
-hotel = 3500
-cab = 800
-
-total = np.sum([flight, hotel, cab])
-
-st.write("### 💰 Total Cost Calculation")
-st.success(f"Total Travel Cost: ₹{total}")
-
-
- # ---------------- COST + STATUS LOGIC ----------------
-
-    # ---------------- COST + STATUS LOGIC ----------------
-
 overall_cost = 8800
 
 if overall_cost <= budget:
-    status = "Approved & Booked ✅"
+        status = "Approved & Booked ✅"
 else:
-    status = "Over Budget ❌"
+        status = "Over Budget ❌"
 
     # ---------------- OUTPUT ----------------
-    st.markdown("## 📦 Final Output")
+st.markdown("## 📦 Final Output")
 
-    st.markdown(f"""
+st.markdown(f"""
     <div class='output-box'>
 
     <h2>🎯 Best Travel Itinerary</h2>
@@ -135,6 +121,9 @@ else:
     </div>
     """, unsafe_allow_html=True)
 
+    
+
+    
 # ---------------- WORKFLOW ----------------
 st.markdown("## 🔄 Design Workflow")
 
