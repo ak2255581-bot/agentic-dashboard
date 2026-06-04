@@ -85,19 +85,17 @@ with col3:
         value=12000
     )
     
-     # ---------------- COST CALCULATION ----------------
+    overall_cost = 8800
 
-overall_cost = 8800
-
-if overall_cost <= budget:
+    if overall_cost <= budget:
         status = "Approved & Booked ✅"
-else:
+    else:
         status = "Over Budget ❌"
 
     # ---------------- OUTPUT ----------------
-st.markdown("## 📦 Final Output")
+    st.markdown("## 📦 Final Output")
 
-st.markdown(f"""
+    st.markdown(f"""
     <div class='output-box'>
 
     <h2>🎯 Best Travel Itinerary</h2>
@@ -121,8 +119,8 @@ st.markdown(f"""
     </div>
     """, unsafe_allow_html=True)
 
-    
 
+    
     
 # ---------------- WORKFLOW ----------------
 st.markdown("## 🔄 Design Workflow")
