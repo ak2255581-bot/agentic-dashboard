@@ -93,31 +93,29 @@ with col3:
         status = "Over Budget ❌"
 
     # ---------------- OUTPUT ----------------
-    st.markdown("## 📦 Final Output")
-
     st.markdown(f"""
-    <div class='output-box'>
+<div style='text-align: left; margin-left: 0; margin-right: auto; width: 100%; max-width: 600px; padding: 10px;'>
 
-    <h2>🎯 Best Travel Itinerary</h2>
-    <hr>
+<h2>🎯 Best Travel Itinerary</h2>
+<hr>
 
-    <b>Route:</b> {from_city} → {to_city}<br><br>
+<b>Route:</b> {from_city} → {to_city}<br><br>
 
-    <b>Travel Mode:</b> Flight ✈️<br><br>
+<b>Travel Mode:</b> Flight ✈️<br><br>
 
-    <b>Flight Cost:</b> ₹4500<br>
-    <b>Hotel:</b> 3-Star Hotel (₹3500)<br>
-    <b>Cab:</b> Airport Pickup (₹800)<br><br>
+<b>Flight Cost:</b> ₹4500<br>
+<b>Hotel:</b> 3-Star Hotel (₹3500)<br>
+<b>Cab:</b> Airport Pickup (₹800)<br><br>
 
-    <b>Total Cost:</b> ₹{overall_cost}<br>
-    <b>Budget:</b> ₹{budget}<br><br>
+<b>Total Cost:</b> ₹{overall_cost}<br>
+<b>Budget:</b> ₹{budget}<br><br>
 
-    <b>Status:</b> {status}<br>
-    <b>Payment:</b> Successful 💳<br>
-    <b>Notification:</b> Ticket Sent 📩
+<b>Status:</b> {status}<br>
+<b>Payment:</b> Successful 💳<br>
+<b>Notification:</b> Ticket Sent 📩
 
-    </div>
-    """, unsafe_allow_html=True)
+</div>
+""", unsafe_allow_html=True)
 
 
     
