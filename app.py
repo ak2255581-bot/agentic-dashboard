@@ -154,7 +154,6 @@ if "📩 Notification Agent" in selected_agents:
     workflow.append("Send ticket + confirmation")
 
 col1, col2 = st.columns([1, 1])
-
 # ---------------- FLOW ----------------
 with col1:
 
