@@ -41,8 +41,7 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# ---------------- AGENTS ----------------
-
+# ---------------- AGENTS ---------------
 
 st.markdown("## 🤖 Available Agents")
 
@@ -99,29 +98,29 @@ st.markdown("## 🎯 Best Travel Itinerary")
 st.write(f"**Route:** {from_city} ➜ {to_city}")
 st.write("**Travel Mode:** Flight ✈️")
 
-st.write("**Flight Cost:** ₹4500")
-st.write("**Hotel:** 3-Star Hotel (₹3500)")
-st.write("**Cab:** Airport Pickup (₹800)")
+col1, col2, col3, col4 = st.columns(4)
 
-st.write(f"**Total Cost:** ₹{overall_cost}")
+col1.metric("Flight", "₹4500")
+col2.metric("Hotel", "₹3500")
+col3.metric("Cab", "₹800")
+col4.metric("Total", f"₹{overall_cost}")
+
 st.write(f"**Budget:** ₹{budget}")
-
 st.write(f"**Status:** {status}")
 st.success("Payment Successful 💳")
 st.info("Ticket Sent 📩")
-       
+
 # ---------------- WORKFLOW ----------------
 st.markdown("## 🔄 Design Workflow")
 
 with st.expander("📋 Click to View / Design Workflow", expanded=False):
-
-    selected_agents = st.multiselect(
-        "Select AI Agents",
-        agents,
-        default=agents
-    )
-
     
+    selected_agents = st.multiselect(
+    "Select AI Agents",
+    agents,
+    default=agents
+)
+ 
     # Step 1
     # Step 2
     # Selected Agents Summary
@@ -219,18 +218,15 @@ if st.button("Run Workflow Simulation"):
     st.success("🎉 Workflow Completed Successfully!") 
 
 # ---------------- AI Analysis----------------
-st.markdown("## 🧠 AI Analysis")
 
-reflection = st.text_area(
-    "Why is this orchestration suitable?",
-    f"This workflow uses {pattern} orchestration. "
-    "Search-related tasks run efficiently while approval, "
-    "payment and notification are handled systematically."
+# Basic reflection summary to avoid undefined variable
+reflection_text = (
+    f"Selected Pattern: {pattern}. Workflow steps: {len(workflow)}. "
+    f"Total Cost: ₹{overall_cost} vs Budget: ₹{budget}. Status: {status}."
 )
 
-if reflection:
-    st.info(reflection)
-
+with st.expander("🧠 AI Analysis", expanded=False):
+    st.write(reflection_text)
 # ---------------- FOOTER ----------------
 st.markdown("---")
 
