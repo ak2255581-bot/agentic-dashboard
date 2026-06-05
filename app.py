@@ -84,36 +84,32 @@ with col3:
         min_value=1000,
         value=12000
     )
-    
-    
-    overall_cost = 8800
 
-    if overall_cost <= budget:
-        status = "Approved & Booked ✅"
-    else:
-        status = "Over Budget ❌"
-        
-# ---------------- OUTPUT----------------
+overall_cost = 8800
 
+if overall_cost <= budget:
+    status = "Approved & Booked ✅"
+else:
+    status = "Over Budget ❌"
 
-    st.markdown("## 🎯 Best Travel Itinerary")
+# ---------------- OUTPUT ----------------
 
-    st.write(f"**Route:** {from_city} ➜ {to_city}")
-    st.write("**Travel Mode:** Flight ✈️")
+st.markdown("## 🎯 Best Travel Itinerary")
 
-    st.write("**Flight Cost:** ₹4500")
-    st.write("**Hotel:** 3-Star Hotel (₹3500)")
-    st.write("**Cab:** Airport Pickup (₹800)")
+st.write(f"**Route:** {from_city} ➜ {to_city}")
+st.write("**Travel Mode:** Flight ✈️")
 
-    st.write(f"**Total Cost:** ₹{overall_cost}")
-    st.write(f"**Budget:** ₹{budget}")
+st.write("**Flight Cost:** ₹4500")
+st.write("**Hotel:** 3-Star Hotel (₹3500)")
+st.write("**Cab:** Airport Pickup (₹800)")
 
-    st.write(f"**Status:** {status}")
-    st.success("Payment Successful 💳")
-    st.info("Ticket Sent 📩")
+st.write(f"**Total Cost:** ₹{overall_cost}")
+st.write(f"**Budget:** ₹{budget}")
 
-
-        
+st.write(f"**Status:** {status}")
+st.success("Payment Successful 💳")
+st.info("Ticket Sent 📩")
+       
 # ---------------- WORKFLOW ----------------
 st.markdown("## 🔄 Design Workflow")
 
