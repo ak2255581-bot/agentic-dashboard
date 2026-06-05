@@ -26,20 +26,11 @@ st.markdown(
 )
 
 # ---------------- SCENARIO ----------------
-st.markdown("## 📌 Scenario")
+st.markdown("## 🎯 Travel Booking Scenario")
 
-st.markdown("""
-<div class='card'>
-<b>Goal:</b> Book a trip from <b>Kolkata → Mumbai</b><br><br>
-
-✔ Cheapest Flight / Train <br>
-✔ 3-Star Hotel <br>
-✔ Cab Booking <br>
-✔ User Approval <br>
-✔ Payment Confirmation <br>
-✔ Notification
-</div>
-""", unsafe_allow_html=True)
+st.info(
+    "🎯 Goal: Book a trip from Kolkata to Mumbai | ✈️ Flight/Train | 🏨 3-Star Hotel | 🚖 Cab Service | ✅ Approval | 💳 Payment | 📩 Notification"
+)
 
 # ---------------- AGENTS ---------------
 
@@ -90,6 +81,15 @@ if overall_cost <= budget:
     status = "Approved & Booked ✅"
 else:
     status = "Over Budget ❌"
+    
+    # Dashboard Summary Cards
+col1, col2, col3 = st.columns(3)
+
+with col1:
+    st.metric("💰 Total Cost", f"₹{overall_cost}")
+
+with col2:
+    st.metric("📊 Budget", f"₹{budget}")
 
 # ---------------- OUTPUT ----------------
 
@@ -158,20 +158,10 @@ col1, col2 = st.columns([1, 1])
 # ---------------- FLOW ----------------
 with col1:
 
-    st.markdown("### Workflow Flow")
+    st.markdown("### 📋 Workflow Execution Plan")
 
     for i, step in enumerate(workflow, 1):
-
-        st.markdown(
-            f"<div class='step-box'>Step {i}: {step}</div>",
-            unsafe_allow_html=True
-        )
-        
-        if i != len(workflow):
-            st.markdown(
-                "<div class='arrow'>⬇️</div>",
-                unsafe_allow_html=True
-            )
+        st.write(f"{i}. {step}")
         
 # ---------------- SUMMARY ----------------
 with col2:
