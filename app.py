@@ -85,41 +85,35 @@ with col3:
         value=12000
     )
     
+    
     overall_cost = 8800
 
     if overall_cost <= budget:
         status = "Approved & Booked ✅"
     else:
         status = "Over Budget ❌"
-
-    # ---------------- OUTPUT ----------------
-    st.markdown(f"""
-<div style='text-align: left; margin-left: 0; margin-right: auto; width: 100%; max-width: 600px; padding: 10px;'>
-
-<h2>🎯 Best Travel Itinerary</h2>
-<hr>
-
-<b>Route:</b> {from_city} → {to_city}<br><br>
-
-<b>Travel Mode:</b> Flight ✈️<br><br>
-
-<b>Flight Cost:</b> ₹4500<br>
-<b>Hotel:</b> 3-Star Hotel (₹3500)<br>
-<b>Cab:</b> Airport Pickup (₹800)<br><br>
-
-<b>Total Cost:</b> ₹{overall_cost}<br>
-<b>Budget:</b> ₹{budget}<br><br>
-
-<b>Status:</b> {status}<br>
-<b>Payment:</b> Successful 💳<br>
-<b>Notification:</b> Ticket Sent 📩
-
-</div>
-""", unsafe_allow_html=True)
+        
+# ---------------- OUTPUT----------------
 
 
-    
-    
+    st.markdown("## 🎯 Best Travel Itinerary")
+
+    st.write(f"**Route:** {from_city} ➜ {to_city}")
+    st.write("**Travel Mode:** Flight ✈️")
+
+    st.write("**Flight Cost:** ₹4500")
+    st.write("**Hotel:** 3-Star Hotel (₹3500)")
+    st.write("**Cab:** Airport Pickup (₹800)")
+
+    st.write(f"**Total Cost:** ₹{overall_cost}")
+    st.write(f"**Budget:** ₹{budget}")
+
+    st.write(f"**Status:** {status}")
+    st.success("Payment Successful 💳")
+    st.info("Ticket Sent 📩")
+
+
+        
 # ---------------- WORKFLOW ----------------
 st.markdown("## 🔄 Design Workflow")
 
@@ -226,10 +220,7 @@ if st.button("Run Workflow Simulation"):
 
         progress.progress((i + 1) / len(workflow))
 
-    st.success("🎉 Workflow Completed Successfully!")
-    
-   
-    
+    st.success("🎉 Workflow Completed Successfully!") 
 
 # ---------------- AI Analysis----------------
 st.markdown("## 🧠 AI Analysis")

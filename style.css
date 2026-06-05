@@ -82,7 +82,7 @@ html, body, [class*="css"] {
     border-left: 6px solid #22c55e;
     box-shadow: 0 4px 15px rgba(0,0,0,0.4);
     margin-left: auto;
-    margin-right: 0;
+    margin-right: auto;
     width: 100%;
     max-width: 500px;
 }
