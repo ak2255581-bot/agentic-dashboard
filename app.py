@@ -3,6 +3,12 @@ import pandas as pd
 import numpy as np
 import time
 
+# ---------------- RESET FUNCTION ----------------
+def reset_app():
+    st.session_state.clear()
+    
+st.sidebar.button("🔄 Reset App", on_click=reset_app)
+
 # ---------------- PAGE CONFIG ----------------
 st.set_page_config(
     page_title="AI Agentic Workflow Dashboard",
@@ -185,8 +191,7 @@ pattern = st.radio(
 
 st.success(f"Selected Pattern: {pattern}")
 
-
-   
+  
 # ---------------- RUN ----------------
 st.markdown("## 🚀 Run AI Workflow")
 
