@@ -5,8 +5,7 @@ import time
 
 # ---------------- RESET FUNCTION ----------------
 def reset_app():
-    keys_to_remove = list(st.session_state.keys())
-    for key in keys_to_remove:
+    for key in list(st.session_state.keys()):
         del st.session_state[key]
 
 st.sidebar.button("🔄 Reset App", on_click=reset_app)
