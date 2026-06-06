@@ -5,10 +5,11 @@ import time
 
 # ---------------- RESET FUNCTION ----------------
 def reset_app():
-    st.session_state.clear()
-    
-st.sidebar.button("🔄 Reset App", on_click=reset_app)
+    keys_to_remove = list(st.session_state.keys())
+    for key in keys_to_remove:
+        del st.session_state[key]
 
+st.sidebar.button("🔄 Reset App", on_click=reset_app)
 # ---------------- PAGE CONFIG ----------------
 st.set_page_config(
     page_title="AI Agentic Workflow Dashboard",
@@ -121,12 +122,18 @@ st.markdown("## 🔄 Design Workflow")
 
 with st.expander("📋 Click to View / Design Workflow", expanded=False):
     
+    # ---------------- SESSION STATE FIX ----------------
+    if "selected_agents" not in st.session_state:
+        st.session_state.selected_agents = agents.copy()
+
+    # ---------------- AGENT SELECTION ----------------
     selected_agents = st.multiselect(
-    "Select AI Agents",
-    agents,
-    default=agents
-)
- 
+        "Select AI Agents",
+        agents,
+        default=st.session_state.selected_agents,
+        key="selected_agents"
+    )   
+    
     # Step 1
     # Step 2
     # Selected Agents Summary
