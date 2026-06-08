@@ -70,16 +70,22 @@ st.markdown("## ✈️ Travel Input")
 col1, col2, col3 = st.columns(3)
 
 with col1:
-    from_city = st.text_input("From City", "Kolkata")
+    from_city = st.text_input(
+        "From City",
+        key="from_city"
+    )
 
 with col2:
-    to_city = st.text_input("To City", "Mumbai")
+    to_city = st.text_input(
+        "To City",
+        key="to_city"
+    )
 
 with col3:
     budget = st.number_input(
         "Budget ₹",
-        min_value=1000,
-        value=12000
+        min_value=15000,
+        key="budget"
     )
 
 overall_cost = 8800
