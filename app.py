@@ -3,12 +3,6 @@ import pandas as pd
 import numpy as np
 import time
 
-# ---------------- RESET FUNCTION ----------------
-def reset_app():
-    for key in list(st.session_state.keys()):
-        del st.session_state[key]
-
-st.sidebar.button("🔄 Reset App", on_click=reset_app)
 # ---------------- PAGE CONFIG ----------------
 st.set_page_config(
     page_title="AI Agentic Workflow Dashboard",
@@ -16,6 +10,13 @@ st.set_page_config(
     layout="wide"
 )
 
+# ---------------- RESET FUNCTION ----------------
+def reset_app():
+    st.session_state.clear()
+
+if st.sidebar.button("🔄 Reset App"):
+    reset_app()
+    st.rerun()
 # ---------------- LOAD CSS ----------------
 with open("style.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
