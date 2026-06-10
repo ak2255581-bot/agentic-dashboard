@@ -9,14 +9,16 @@ st.set_page_config(
     page_icon="🤖",
     layout="wide"
 )
-
 # ---------------- RESET FUNCTION ----------------
 def reset_app():
     st.session_state.clear()
+    st.cache_data.clear()
+    st.cache_resource.clear()
 
 if st.sidebar.button("🔄 Reset App"):
     reset_app()
     st.rerun()
+
 # ---------------- LOAD CSS ----------------
 with open("style.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
@@ -36,7 +38,7 @@ st.markdown(
 st.markdown("## 🎯 Travel Booking Scenario")
 
 st.info(
-    "🎯 Goal: Book a trip from Kolkata to Mumbai | ✈️ Flight/Train | 🏨 3-Star Hotel | 🚖 Cab Service | ✅ Approval | 💳 Payment | 📩 Notification"
+    "🎯 Goal: Book a trip from to from | ✈️ Flight/Train | 🏨 3-Star Hotel | 🚖 Cab Service | ✅ Approval | 💳 Payment | 📩 Notification"
 )
 
 # ---------------- AGENTS ---------------
@@ -106,39 +108,35 @@ with col2:
 
 # ---------------- OUTPUT ----------------
 
-st.markdown("## 🎯 Best Travel Itinerary")
+if from_city and to_city:
 
-st.write(f"**Route:** {from_city} ➜ {to_city}")
-st.write("**Travel Mode:** Flight ✈️")
+    st.markdown("## 🎯 Best Travel Itinerary")
 
-col1, col2, col3, col4 = st.columns(4)
+    st.write(f"**Route:** {from_city} ➜ {to_city}")
+    st.write("**Travel Mode:** Flight ✈️")
 
-col1.metric("Flight", "₹4500")
-col2.metric("Hotel", "₹3500")
-col3.metric("Cab", "₹800")
-col4.metric("Total", f"₹{overall_cost}")
+    col1, col2, col3, col4 = st.columns(4)
 
-st.write(f"**Budget:** ₹{budget}")
-st.write(f"**Status:** {status}")
-st.success("Payment Successful 💳")
-st.info("Ticket Sent 📩")
+    col1.metric("Flight", "₹4500")
+    col2.metric("Hotel", "₹3500")
+    col3.metric("Cab", "₹800")
+    col4.metric("Total", f"₹{overall_cost}")
 
+    st.write(f"**Budget:** ₹{budget}")
+    st.write(f"**Status:** {status}")
+    st.success("Payment Successful 💳")
+    st.info("Ticket Sent 📩")
 # ---------------- WORKFLOW ----------------
 st.markdown("## 🔄 Design Workflow")
 
 with st.expander("📋 Click to View / Design Workflow", expanded=False):
-    
-    # ---------------- SESSION STATE FIX ----------------
-    if "selected_agents" not in st.session_state:
-        st.session_state.selected_agents = agents.copy()
 
-    # ---------------- AGENT SELECTION ----------------
     selected_agents = st.multiselect(
         "Select AI Agents",
         agents,
-        default=st.session_state.selected_agents,
+        default=[],
         key="selected_agents"
-    )   
+    )
     
     # Step 1
     # Step 2
